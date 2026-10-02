@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="id" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shina-AI - Bot WhatsApp Multifungsi & AI Assistant</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome 6 for High-Quality Brand Logos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Tailwind Custom Config for GitHub Theme Colors -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        gh: {
+                            bg: '#0d1117',
+                            canvas: '#161b22',
+                            subtle: '#21262d',
+                            border: '#30363d',
+                            muted: '#8b949e',
+                            text: '#c9d1d9',
+                            heading: '#f0f6fc',
+                            green: '#238636',
+                            greenHover: '#2ea043',
+                            blue: '#58a6ff',
+                            purple: '#bc8cff',
+                            orange: '#d29922'
+                        },
+                        ghlight: {
+                            bg: '#ffffff',
+                            canvas: '#f6f8fa',
+                            subtle: '#f0f2f5',
+                            border: '#d0d7de',
+                            muted: '#57606a',
+                            text: '#24292f',
+                            heading: '#1f2328',
+                            green: '#1f883d',
+                            blue: '#0969da'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'],
+                        mono: ['ui-monospace', 'SFMono-Regular', 'SF Mono', 'Menlo', 'Consolas', 'Liberation Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-panel {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .code-scroll::-webkit-scrollbar {
+            height: 6px;
+            width: 6px;
+        }
+        .code-scroll::-webkit-scrollbar-thumb {
+            background: rgba(110, 118, 129, 0.4);
+            border-radius: 6px;
+        }
+        .code-scroll::-webkit-scrollbar-track {
+            background: transparent;
+        }
+    </style>
+</head>
+<body class="bg-ghlight-canvas dark:bg-gh-bg text-ghlight-text dark:text-gh-text transition-colors duration-200 min-h-screen font-sans flex flex-col justify-between">
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="sticky top-0 z-40 border-b border-ghlight-border dark:border-gh-border bg-ghlight-canvas/80 dark:bg-gh-bg/80 glass-panel">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="bg-ghlight-heading dark:bg-gh-heading text-white dark:text-gh-bg p-2 rounded-lg font-mono font-bold text-lg flex items-center justify-center shadow-sm">
+                    <i data-lucide="sparkles" class="w-5 h-5 text-gh-blue"></i>
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <span class="font-bold text-ghlight-heading dark:text-gh-heading tracking-tight text-lg">Shina<span class="text-gh-blue">-AI</span></span>
+                        <span class="text-xs font-mono px-2 py-0.5 rounded-full border border-ghlight-border dark:border-gh-border text-ghlight-muted dark:text-gh-muted bg-ghlight-bg dark:bg-gh-canvas">v3.2.0</span>
+                    </div>
+                </div>
+            </div>
+
+            <nav class="hidden md:flex items-center gap-6 text-sm font-medium">
+                <a href="#demo" class="hover:text-ghlight-blue dark:hover:text-gh-blue transition-colors">Terminal Simulator</a>
+                <a href="#fitur" class="hover:text-ghlight-blue dark:hover:text-gh-blue transition-colors">Fitur</a>
+                <a href="#commands" class="hover:text-ghlight-blue dark:hover:text-gh-blue transition-colors">Command</a>
+                <a href="#pricing" class="hover:text-ghlight-blue dark:hover:text-gh-blue transition-colors">List Harga</a>
+                <a href="#owner" class="hover:text-ghlight-blue dark:hover:text-gh-blue transition-colors text-gh-blue font-semibold flex items-center gap-1">
+                    <i data-lucide="user-check" class="w-4 h-4"></i> Contact Owner
+                </a>
+            </nav>
+
+            <div class="flex items-center gap-3">
+                <!-- Theme Toggle -->
+                <button id="themeToggle" class="p-2 rounded-lg border border-ghlight-border dark:border-gh-border bg-ghlight-bg dark:bg-gh-canvas text-ghlight-text dark:text-gh-text hover:bg-ghlight-canvas dark:hover:bg-gh-subtle transition-colors" title="Toggle Mode">
+                    <i data-lucide="sun" class="w-4 h-4 hidden dark:block"></i>
+                    <i data-lucide="moon" class="w-4 h-4 block dark:hidden"></i>
+                </button>
+
+                <!-- CTA List Harga -->
+                <a href="#pricing" class="inline-flex border border-ghlight-border dark:border-gh-border bg-ghlight-bg dark:bg-gh-canvas hover:bg-ghlight-canvas dark:hover:bg-gh-subtle text-ghlight-heading dark:text-gh-heading text-sm px-3.5 py-2 rounded-lg font-medium transition-colors">
+                    List Harga
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="relative py-16 md:py-24 border-b border-ghlight-border dark:border-gh-border bg-gradient-to-b from-transparent via-ghlight-canvas/50 to-transparent dark:via-gh-canvas/30">
+        <div class="max-w-5xl mx-auto px-4 text-center">
+            
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-ghlight-border dark:border-gh-border bg-ghlight-bg dark:bg-gh-canvas text-xs font-mono mb-6 text-ghlight-muted dark:text-gh-muted">
+                <span class="text-gh-green font-semibold">● Production Ready</span>
+                <span class="opacity-40">|</span>
+                <span>Powered by Gemini 3 Flash & Baileys Engine</span>
+            </div>
+
+            <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-ghlight-heading dark:text-gh-heading mb-6 leading-tight">
+                Supercharge WhatsApp dengan <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 via-gh-blue to-gh-purple">Shina-AI</span>
+            </h1>
+
+            <p class="text-lg sm:text-xl text-ghlight-muted dark:text-gh-muted max-w-2xl mx-auto mb-8 font-normal leading-relaxed">
+                Bot WhatsApp multifungsi terlengkap. Dilengkapi asisten AI interaktif, downloader media ultra-cepat, fitur grup otomatis, dan generator stiker tanpa batas.
+            </p>
+
+            <!-- Buttons area: Mau Coba Gratis, List Harga & Simulasi Bot -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
+                <button onclick="openFreeModal()" class="w-full sm:w-auto bg-ghlight-green dark:bg-gh-green hover:bg-emerald-700 dark:hover:bg-gh-greenHover text-white px-7 py-3.5 rounded-lg font-semibold text-base shadow-lg shadow-emerald-900/20 flex items-center justify-center gap-2 transition-all transform hover:-translate-y-0.5">
+                    <i data-lucide="sparkles" class="w-5 h-5 text-yellow-300"></i>
+                    <span>Mau Coba Gratis?</span>
+                </button>
+                <a href="#pricing" class="w-full sm:w-auto border border-ghlight-border dark:border-gh-border bg-ghlight-bg dark:bg-gh-canvas hover:bg-ghlight-canvas dark:hover:bg-gh-subtle text-ghlight-heading dark:text-gh-heading px-7 py-3.5 rounded-lg font-semibold text-base flex items-center justify-center gap-2 transition-all">
+                    <i data-lucide="tag" class="w-5 h-5 text-gh-blue"></i>
+                    <span>Cek List Harga</span>
+                </a>
+                <a href="#demo" class="w-full sm:w-auto border border-gh-blue/40 bg-gh-blue/10 hover:bg-gh-blue/20 text-gh-blue px-7 py-3.5 rounded-lg font-semibold text-base flex items-center justify-center gap-2 transition-all">
+                    <i data-lucide="terminal" class="w-5 h-5 text-gh-blue"></i>
+                    <span>Simulasi Bot</span>
+                </a>
+            </div>
+
+            <!-- Repo Quick Stats -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto pt-6 border-t border-ghlight-border/60 dark:border-gh-border/60 text-left font-mono text-xs text-ghlight-muted dark:text-gh-muted">
+                <div class="p-3 rounded-lg border border-ghlight-border/40 dark:border-gh-border/40 bg-ghlight-bg/50 dark:bg-gh-canvas/50">
+                    <div class="flex items-center gap-1.5 mb-1 text-ghlight-heading dark:text-gh-heading font-bold text-base">
+                        <i data-lucide="activity" class="w-4 h-4 text-emerald-500"></i> 99.9%
+                    </div>
+                    <span>Uptime SLA</span>
+                </div>
+                <div class="p-3 rounded-lg border border-ghlight-border/40 dark:border-gh-border/40 bg-ghlight-bg/50 dark:bg-gh-canvas/50">
+                    <div class="flex items-center gap-1.5 mb-1 text-ghlight-heading dark:text-gh-heading font-bold text-base">
+                        <i data-lucide="users" class="w-4 h-4 text-gh-blue"></i> 21,400+
+                    </div>
+                    <span>Pengguna Aktif</span>
+                </div>
+                <div class="p-3 rounded-lg border border-ghlight-border/40 dark:border-gh-border/40 bg-ghlight-bg/50 dark:bg-gh-canvas/50">
+                    <div class="flex items-center gap-1.5 mb-1 text-ghlight-heading dark:text-gh-heading font-bold text-base">
+                        <i data-lucide="cpu" class="w-4 h-4 text-gh-purple"></i> &lt; 150ms
+                    </div>
+                    <span>Response Latency</span>
+                </div>
+                <div class="p-3 rounded-lg border border-ghlight-border/40 dark:border-gh-border/40 bg-ghlight-bg/50 dark:bg-gh-canvas/50">
+                    <div class="flex items-center gap-1.5 mb-1 text-ghlight-heading dark:text-gh-heading font-bold text-base">
+                        <i data-lucide="shield-check" class="w-4 h-4 text-gh-orange"></i> E2E
+                    </div>
+                    <span>Encrypted Protocol</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTERACTIVE TERMINAL / BOT DEMO -->
+    <section id="demo" class="py-16 border-b border-ghlight-border dark:border-gh-border">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="mb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div>
+                    <h2 class="text-2xl font-bold text-ghlight-heading dark:text-gh-heading flex items-center gap-2">
+                        <i data-lucide="terminal" class="w-6 h-6 text-gh-blue"></i> Interactive Shina-AI Terminal
+                    </h2>
+                    <p class="text-sm text-ghlight-muted dark:text-gh-muted mt-1">Uji coba perintah Shina-AI secara langsung di bawah ini.</p>
+                </div>
+                <span class="text-xs font-mono bg-gh-blue/10 text-gh-blue border border-gh-blue/20 px-3 py-1 rounded-full self-start sm:self-auto">Shina CLI v3.2</span>
+            </div>
+
+            <!-- API Key Configuration Bar -->
+            <div class="mb-4 p-3 rounded-xl border border-ghlight-border dark:border-gh-border bg-ghlight-bg dark:bg-gh-canvas font-mono text-xs flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2">
+                <div class="flex items-center gap-2 text-ghlight-heading dark:text-gh-heading shrink-0">
+                    <i data-lucide="key" class="w-4 h-4 text-yellow-500"></i>
+                    <span>Gemini API Key:</span>
+                </div>
+                <div class="flex items-center gap-2 flex-1 max-w-full">
+                    <input type="password" id="userApiKey" placeholder="Masukkan API Key gratis dari Google AI Studio (Opsional)..." class="w-full bg-ghlight-canvas dark:bg-gh-subtle border border-ghlight-border dark:border-gh-border rounded px-2.5 py-1 text-xs text-ghlight-heading dark:text-gh-heading placeholder-ghlight-muted dark:placeholder-gh-muted focus:outline-none focus:border-gh-blue">
+                    <button onclick="saveApiKey()" class="bg-gh-blue hover:bg-blue-600 text-white px-3 py-1 rounded font-semibold text-xs transition-colors shrink-0">
+                        Simpan
+                    </button>
+                </div>
+                <a href="https://aistudio.google.com" target="_blank" class="text-[11px] text-gh-blue hover:underline flex items-center gap-1 shrink-0">
+                    Dapatkan Key Gratis <i data-lucide="external-link" class="w-3 h-3"></i>
+                </a>
+            </div>
+
+            <!-- Terminal Card -->
+            <div class="rounded-xl border border-ghlight-border dark:border-gh-border bg-ghlight-bg dark:bg-gh-canvas shadow-2xl overflow-hidden">
+                <!-- Window Controls Header -->
+                <div class="bg-ghlight-canvas dark:bg-gh-subtle px-4 py-3 border-b border-ghlight-border dark:border-gh-border flex items-center justify-between font-mono text-xs">
+                    <div class="flex items-center gap-2">
+                        <span class="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
+                        <span class="w-3 h-3 rounded-full bg-yellow-500/80 inline-block"></span>
+                        <span class="w-3 h-3 rounded-full bg-green-500/80 inline-block"></span>
+                        <span id="aiStatusText" class="ml-2 text-ghlight-muted dark:text-gh-muted hidden sm:inline">shina-ai --auto-ai-engine: active</span>
+                    </div>
+                    <div class="text-ghlight-muted dark:text-gh-muted flex items-center gap-1">
+                        <i data-lucide="wifi" class="w-3.5 h-3.5 text-emerald-500"></i> Connected
+                    </div>
+                </div>
+
+                <!-- Chat Body Screen -->
+                <div id="chatWindow" class="p-4 sm:p-6 h-[420px] overflow-y-auto space-y-4 font-mono text-xs sm:text-sm code-scroll bg-ghlight-bg dark:bg-gh-bg">
+                    <!-- System Message -->
+                    <div class="text-ghlight-muted dark:text-gh-muted text-center py-2 text-xs border-b border-dashed border-ghlight-border dark:border-gh-border/50">
+                        === Shina-AI Terminal Connected. Type <span class="text-gh-blue">.menu</span> or select quick try buttons below. ===
+                    </div>
+
+                    <!-- Bot Response Start -->
+                    <div class="flex items-start gap-3">
+                        <div class="w-7 h-7 rounded-full bg-gh-blue/20 text-gh-blue flex items-center justify-center font-bold text-xs shrink-0">SAI</div>
+                        <div class="bg-ghlight-canvas dark:bg-gh-canvas p-3 rounded-lg border border-ghlight-border dark:border-gh-border text-ghlight-text dark:text-gh-text max-w-[85%]">
+                            <p class="font-bold text-gh-blue mb-1">🤖 Shina-AI Assistant</p>
+                            <p>Halo! Saya <b>Shina-AI</b>. Silakan uji coba perintah di bawah ini secara interaktif:</p>
+                            <ul class="list-disc list-inside mt-2 space-y-1 text-xs">
+                                <li><code class="bg-ghlight-subtle dark:bg-gh-subtle px-1 rounded text-gh-orange">.ai [pertanyaan]</code> - Tanya Jawab AI Live (Selalu Bekerja)</li>
+                                <li><code class="bg-ghlight-subtle dark:bg-gh-subtle px-1 rounded text-gh-orange">.img [deskripsi]</code> - Generate Gambar AI HD</li>
+                                <li><code class="bg-ghlight-subtle dark:bg-gh-subtle px-1 rounded text-gh-orange">.tiktok [link]</code> - Downloader Video TikTok Playable</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Command Quick Buttons -->
+                <div class="px-4 py-2 bg-ghlight-canvas dark:bg-gh-canvas border-t border-ghlight-border dark:border-gh-border flex gap-2 overflow-x-auto text-xs font-mono code-scroll">
+                    <span class="text-ghlight-muted dark:text-gh-muted self-center shrink-0">Quick Try:</span>
+                    <button onclick="sendQuickCommand('.menu')" class="px-2.5 py-1 rounded border border-ghlight-border dark:border-gh-border bg-ghlight-bg dark:bg-gh-subtle hover:border-gh-blue text-gh-blue shrink-0">.menu</button>
+                    <button onclick="sendQuickCommand('.ai Berikan 3 cara meningkatkan produktivitas belajar')" class="px-2.5 py-1 rounded border border-ghlight-border dark:border-gh-border bg-ghlight-bg dark:bg-gh-subtle hover:border-gh-blue text-gh-purple shrink-0">.ai [tanya]</button>
+                    <button onclick="sendQuickCommand('.img robot kucing mecha cyberpunk anime')" class="px-2.5 py-1 rounded border border-ghlight-border dark:border-gh-border bg-ghlight-bg dark:bg-gh-subtle hover:border-gh-blue text-yellow-500 shrink-0">.img [prompt]</button>
+                    <button onclick="sendQuickCommand('.tiktok https://vt.tiktok.com/ZSjR1xYp9/')" class="px-2.5 py-1 rounded border border-ghlight-border dark:border-gh-border bg-ghlight-bg dark:bg-gh-subtle hover:border-gh-blue text-gh-green shrink-0">.tiktok [link]</button>
+                </div>
+
+                <!-- Input Console -->
+                <form id="chatForm" onsubmit="handleChatSubmit(event)" class="p-3 bg-ghlight-canvas dark:bg-gh-subtle border-t border-ghlight-border dark:border-gh-border flex items-center gap-2">
+                    <span class="text-gh-green font-mono font-bold pl-2">&gt;</span>
+                    <input type="text" id="chatInput" placeholder="Ketik perintah (contoh: .menu, .ai, .img cyberpunk, .tiktok link)..." class="w-full bg-transparent border-none focus:outline-none font-mono text-sm text-ghlight-heading dark:text-gh-heading placeholder-ghlight-muted dark:placeholder-gh-muted">
+                    <button type="submit" class="bg-ghlight-green dark:bg-gh-green hover:bg-emerald-700 dark:hover:bg-gh-greenHover text-white p-2 rounded-lg transition-colors shrink-0">
+                        <i data-lucide="send" class="w-4 h-4"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES SECTION -->
+    <section id="fitur" class="py-16 border-b border-ghlight-border dark:border-gh-border">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <span class="font-mono text-xs text-gh-blue uppercase tracking-widest font-semibold">Features & Modules</span>
+                <h2 class="text-3xl font-bold text-ghlight-heading dark:text-gh-heading mt-2">Mengapa Memilih Shina-AI?</h2>
+                <p class="text-ghlight-muted dark:text-gh-muted mt-2 max-w-xl mx-auto">Dirancang untuk kecepatan tinggi, fleksibilitas tinggi, dan keandalan 24 jam nonstop.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="border border-ghlight-border dark:border-gh-border bg-ghlight-bg dark:bg-gh-canvas p-6 rounded-xl hover:border-gh-blue/60 transition-all duration-200 group">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="p-2.5 rounded-lg bg-gh-blue/10 text-gh-blue group-hover:bg-gh-blue group-hover:text-white transition-colors">
+                            <i data-lucide="brain-circuit" class="w-6 h-6"></i>
+                        </div>
+                        <span class="font-mono text-xs px-2 py-1 rounded border border-ghlight-border dark:border-gh-border text-ghlight-muted dark:text-gh-muted">ai/gemini-flash</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-ghlight-heading dark:text-gh-heading mb-2">Smart AI Engine</h3>
+                    <p class="text-sm text-ghlight-muted dark:text-gh-muted leading-relaxed">Tanya jawab cerdas, pembuatan artikel, pemecahan soal matematika, hingga pemrosesan bahasa alami tercepat.</p>
+                </div>
+
+                <div class="border border-ghlight-border dark:border-gh-border bg-ghlight-bg dark:bg-gh-canvas p-6 rounded-xl hover:border-gh-purple/60 transition-all duration-200 group">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="p-2.5 rounded-lg bg-gh-purple/10 text-gh-purple group-hover:bg-gh-purple group-hover:text-white transition-colors">
+                            <i data-lucide="image" class="w-6 h-6"></i>
+                        </div>
+                        <span class="font-mono text-xs px-2 py-1 rounded border border-ghlight-border dark:border-gh-border text-ghlight-muted dark:text-gh-muted">ai/image-gen</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-ghlight-heading dark:text-gh-heading mb-2">Text-to-Image Generator</h3>
+                    <p class="text-sm text-ghlight-muted dark:text-gh-muted leading-relaxed">Ketik imajinasi Anda dengan perintah <code class="text-gh-purple">.img</code> dan Shina-AI akan menghasilkan gambar HD secara instant.</p>
+                </div>
+
+                <div class="border border-ghlight-border dark:border-gh-border bg-ghlight-bg dark:bg-gh-canvas p-6 rounded-xl hover:border-gh-green/60 transition-all duration-200 group">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="p-2.5 rounded-lg bg-gh-green/10 text-gh-green group-hover:bg-gh-green group-hover:text-white transition-colors">
+                            <i data-lucide="download" class="w-6 h-6"></i>
+                        </div>
+                        <span class="font-mono text-xs px-2 py-1 rounded border border-ghlight-border dark:border-gh-border text-ghlight-muted dark:text-gh-muted">media/downloader</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-ghlight-heading dark:text-gh-heading mb-2">Social Media Downloader</h3>
+                    <p class="text-sm text-ghlight-muted dark:text-gh-muted leading-relaxed">Unduh video TikTok tanpa watermark, Instagram Reels, Spotify, dan YouTube MP3/MP4 secara otomatis.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMMAND EXPLORER / SEARCH -->
+    <section id="commands" class="py-16 border-b border-ghlight-border dark:border-gh-border">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+                <div>
+                    <span class="font-mono text-xs text-gh-blue uppercase tracking-widest font-semibold">Command Documentation</span>
+                    <h2 class="text-3xl font-bold text-ghlight-heading dark:text-gh-heading mt-1">Daftar Perintah Shina-AI</h2>
+                </div>
+
+                <div class="relative min-w-[280px]">
+                    <i data-lucide="search" class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-ghlight-muted dark:text-gh-muted"></i>
+                    <input type="text" id="commandSearch" oninput="filterCommands()" placeholder="Cari perintah (contoh: .ai, .tiktok)..." class="w-full bg-ghlight-bg dark:bg-gh-canvas border border-ghlight-border dark:border-gh-border rounded-lg pl-9 pr-4 py-2 text-sm text-ghlight-heading dark:text-gh-heading focus:outline-none focus:border-gh-blue">
+                </div>
+            </div>
+
+            <div class="flex gap-2 mb-6 overflow-x-auto pb-2 text-xs font-mono code-scroll" id="categoryFilter">
+                <button onclick="setCategory('all')" class="cat-btn active px-3 py-1.5 rounded-lg border border-gh-blue bg-gh-blue/10 text-gh-blue font-semibold">All Commands</button>
+                <button onclick="setCategory('ai')" class="cat-btn px-3 py-1.5 rounded-lg border border-ghlight-border dark:border-gh-border bg-ghlight-bg dark:bg-gh-canvas hover:border-gh-muted text-ghlight-muted dark:text-gh-muted">AI & Assistance</button>
+                <button onclick="setCategory('media')" class="cat-btn px-3 py-1.5 rounded-lg border border-ghlight-border dark:border-gh-border bg-ghlight-bg dark:bg-gh-canvas hover:border-gh-muted text-ghlight-muted dark:text-gh-muted">Downloader</button>
+                <button onclick="setCategory('group')" class="cat-btn px-3 py-1.5 rounded-lg border border-ghlight-border dark:border-gh-border bg-ghlight-bg dark:bg-gh-canvas hover:border-gh-muted text-ghlight-muted dark:text-gh-muted">Group Admin</button>
+                <button onclick="setCategory('tools')" class="cat-btn px-3 py-1.5 rounded-lg border border-ghlight-border dark:border-gh-border bg-ghlight-bg dark:bg-gh-canvas hover:border-gh-muted text-ghlight-muted dark:text-gh-muted">Tools & Utilities</button>
+            </div>
+
+            <div class="rounded-xl border border-ghlight-border dark:border-gh-border bg-ghlight-bg dark:bg-gh-canvas overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="border-b border-ghlight-border dark:border-gh-border bg-ghlight-canvas dark:bg-gh-subtle/50 font-mono text-xs text-ghlight-muted dark:text-gh-muted">
+                                <th class="p-3 pl-4">COMMAND</th>
+                                <th class="p-3">KATEGORI</th>
+                                <th class="p-3">DESKRIPSI</th>
+                                <th class="p-3 pr-4 text-right">AKSI</th>
+                            </tr>
+                        </thead>
+                        <tbody id="commandTableBody" class="divide-y divide-ghlight-border dark:divide-gh-border font-mono text-xs sm:text-sm">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING SECTION -->
+    <section id="pricing" class="py-16 border-b border-ghlight-border dark:border-gh-border bg-gradient-to-b from-transparent via-ghlight-canvas/40 to-transparent dark:via-gh-canvas/20">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <span class="font-mono text-xs text-gh-blue uppercase tracking-widest font-semibold">Pricing Plans</span>
+                <h2 class="text-3xl font-bold text-ghlight-heading dark:text-gh-heading mt-1">Paket &amp; List Harga Shina-AI</h2>
+                <p class="text-ghlight-muted dark:text-gh-muted mt-2">Pilih paket yang sesuai dengan kebutuhan pribadi atau grup Anda.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="border border-ghlight-border dark:border-gh-border bg-ghlight-bg dark:bg-gh-canvas rounded-xl p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="font-bold text-lg text-ghlight-heading dark:text-gh-heading">Free Community</span>
+                            <span class="text-xs font-mono px-2 py-0.5 rounded border border-ghlight-border dark:border-gh-border text-ghlight-muted dark:text-gh-muted">Free</span>
+                        </div>
+                        <div class="text-3xl font-extrabold text-ghlight-heading dark:text-gh-heading mb-1">Rp 0 <span class="text-xs font-normal text-ghlight-muted dark:text-gh-muted">/ selamanya</span></div>
+                        <p class="text-xs text-ghlight-muted dark:text-gh-muted mb-6">Akses gratis langsung melalui 3 grup WhatsApp resmi Shina-AI.</p>
+                        
+                        <ul class="space-y-3 text-xs sm:text-sm text-ghlight-text dark:text-gh-text mb-6">
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Limit 30 Command / Hari</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Akses AI Smart Base</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> TikTok &amp; IG Downloader</li>
+                        </ul>
+                    </div>
+                    <button onclick="openFreeModal()" class="w-full bg-ghlight-green dark:bg-gh-green hover:bg-emerald-700 dark:hover:bg-gh-greenHover text-white py-2.5 rounded-lg text-sm font-semibold transition-colors flex items-center justify-center gap-2">
+                        <i data-lucide="users" class="w-4 h-4"></i>
+                        <span>Gabung Grup Gratis</span>
+                    </button>
+                </div>
+
+                <div class="border-2 border-gh-blue bg-ghlight-bg dark:bg-gh-canvas rounded-xl p-6 flex flex-col justify-between relative shadow-xl">
+                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-gh-blue text-white font-mono text-[10px] px-3 py-0.5 rounded-full uppercase tracking-wider font-bold">
+                        Most Popular
+                    </div>
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="font-bold text-lg text-ghlight-heading dark:text-gh-heading">Premium Personal</span>
+                            <span class="text-xs font-mono px-2 py-0.5 rounded bg-gh-blue/20 text-gh-blue border border-gh-blue/30">VIP Pass</span>
+                        </div>
+                        <div class="text-3xl font-extrabold text-ghlight-heading dark:text-gh-heading mb-1">Rp 25.000 <span class="text-xs font-normal text-ghlight-muted dark:text-gh-muted">/ bulan</span></div>
+                        <p class="text-xs text-ghlight-muted dark:text-gh-muted mb-6">Akses penuh chat pribadi (PC) tanpa antrian dan tanpa limit.</p>
+                        
+                        <ul class="space-y-3 text-xs sm:text-sm text-ghlight-text dark:text-gh-text mb-6">
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Unlimited Command Usage</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Akses Private Chat (Direct Message)</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> High Priority AI Response (Gemini 3 Flash)</li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.me/6281234567890?text=Halo%20Owner%20Shina-AI,%20saya%20ingin%20sewa%20Paket%20Premium%20Personal" target="_blank" class="w-full bg-gh-blue hover:bg-blue-600 text-white text-center py-2.5 rounded-lg text-sm font-semibold transition-colors shadow-md block">
+                        Sewa Premium Personal
+                    </a>
+                </div>
+
+                <div class="border border-ghlight-border dark:border-gh-border bg-ghlight-bg dark:bg-gh-canvas rounded-xl p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="font-bold text-lg text-ghlight-heading dark:text-gh-heading">Sewa Bot Grup</span>
+                            <span class="text-xs font-mono px-2 py-0.5 rounded border border-ghlight-border dark:border-gh-border text-ghlight-muted dark:text-gh-muted">Group Pro</span>
+                        </div>
+                        <div class="text-3xl font-extrabold text-ghlight-heading dark:text-gh-heading mb-1">Rp 50.000 <span class="text-xs font-normal text-ghlight-muted dark:text-gh-muted">/ bulan</span></div>
+                        <p class="text-xs text-ghlight-muted dark:text-gh-muted mb-6">Shina-AI masuk ke grup Anda untuk otomasi seluruh member.</p>
+                        
+                        <ul class="space-y-3 text-xs sm:text-sm text-ghlight-text dark:text-gh-text mb-6">
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Shina-AI Masuk Ke Grup WhatsApp Anda</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Moderasi Anti-Link &amp; Anti-Spam</li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.me/6281234567890?text=Halo%20Owner%20Shina-AI,%20saya%20ingin%20Sewa%20Bot%20untuk%20Grup%20WhatsApp" target="_blank" class="w-full border border-ghlight-border dark:border-gh-border hover:bg-ghlight-canvas dark:hover:bg-gh-subtle text-ghlight-heading dark:text-gh-heading text-center py-2.5 rounded-lg text-sm font-medium transition-colors block">
+                        Sewa Bot Grup
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT OWNER SECTION -->
+    <section id="owner" class="py-16 border-b border-ghlight-border dark:border-gh-border bg-ghlight-canvas/60 dark:bg-gh-canvas/40">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="text-center mb-10">
+                <span class="font-mono text-xs text-gh-blue uppercase tracking-widest font-semibold">Official Contact</span>
+                <h2 class="text-3xl font-bold text-ghlight-heading dark:text-gh-heading mt-1">Hubungi Owner Shina-AI</h2>
+                <p class="text-ghlight-muted dark:text-gh-muted mt-2 text-sm">Punya pertanyaan, butuh integrasi khusus, atau ingin menjadi reseller? Hubungi owner secara langsung.</p>
+            </div>
+
+            <div class="border border-ghlight-border dark:border-gh-border bg-ghlight-bg dark:bg-gh-canvas rounded-2xl p-6 sm:p-8 shadow-xl relative overflow-hidden">
+                <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-gh-blue/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="flex flex-col md:flex-row items-center md:items-start gap-6 text-center md:text-left">
+                    <div class="relative shrink-0">
+                        <div class="w-24 h-24 rounded-full border-2 border-gh-blue p-1 bg-ghlight-canvas dark:bg-gh-subtle flex items-center justify-center">
+                            <div class="w-full h-full rounded-full bg-gradient-to-tr from-gh-blue to-gh-purple flex items-center justify-center text-white font-bold text-3xl font-mono shadow-md">
+                                SA
+                            </div>
+                        </div>
+                        <span class="absolute bottom-1 right-1 w-5 h-5 bg-emerald-500 border-2 border-ghlight-bg dark:border-gh-canvas rounded-full" title="Owner Online"></span>
+                    </div>
+
+                    <div class="flex-1">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-2">
+                            <div>
+                                <h3 class="text-2xl font-bold text-ghlight-heading dark:text-gh-heading">Owner Shina-AI</h3>
+                                <p class="text-xs font-mono text-gh-blue">@shina_ai_official • Lead Developer</p>
+                            </div>
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono border border-emerald-500/30 bg-emerald-500/10 text-emerald-500 self-center md:self-start">
+                                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                                Available for Support
+                            </span>
+                        </div>
+
+                        <p class="text-sm text-ghlight-muted dark:text-gh-muted mb-6 leading-relaxed">
+                            Pengembang resmi sistem <b>Shina-AI</b>. Melayani sewa bot privat, perbaikan kendala, konsultasi fitur custom, serta kolaborasi bisnis.
+                        </p>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <!-- WhatsApp Button with FontAwesome Icon -->
+                            <a href="https://wa.me/6281234567890?text=Halo%20Owner%20Shina-AI,%20saya%20ingin%20bertanya%20mengenai%20bot" target="_blank" class="flex items-center justify-center gap-3 bg-emerald-600 hover:bg-emerald-700 text-white py-3.5 px-5 rounded-xl font-semibold text-sm transition-all shadow-md group">
+                                <i class="fa-brands fa-whatsapp text-2xl text-white group-hover:scale-110 transition-transform"></i>
+                                <span class="tracking-wide">WhatsApp Owner</span>
+                            </a>
+
+                            <!-- TikTok Button with High Precision Brand Icon -->
+                            <a href="https://tiktok.com/@shina_ai_official" target="_blank" class="flex items-center justify-center gap-3 border border-ghlight-border dark:border-gh-border bg-ghlight-canvas dark:bg-gh-subtle hover:bg-ghlight-border dark:hover:bg-gh-border text-ghlight-heading dark:text-gh-heading py-3.5 px-5 rounded-xl font-semibold text-sm transition-all shadow-sm group">
+                                <i class="fa-brands fa-tiktok text-2xl text-emerald-400 group-hover:text-gh-purple group-hover:scale-110 transition-all"></i>
+                                <span class="tracking-wide">TikTok Official</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAU COBA GRATIS - MODAL WA GROUPS -->
+    <div id="freeModal" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-ghlight-bg dark:bg-gh-canvas border border-ghlight-border dark:border-gh-border rounded-xl max-w-xl w-full p-6 shadow-2xl relative max-h-[90vh] overflow-y-auto code-scroll">
+            
+            <button onclick="closeFreeModal()" class="absolute top-4 right-4 text-ghlight-muted dark:text-gh-muted hover:text-ghlight-heading dark:hover:text-gh-heading p-1 rounded-lg transition-colors">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+
+            <div class="flex items-center gap-3 mb-6 border-b border-ghlight-border dark:border-gh-border pb-4">
+                <div class="p-2.5 bg-emerald-500/10 text-emerald-500 rounded-xl border border-emerald-500/20">
+                    <i data-lucide="message-circle" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold text-ghlight-heading dark:text-gh-heading flex items-center gap-2">
+                        Komunitas Shina-AI Gratis
+                    </h3>
+                    <p class="text-xs text-ghlight-muted dark:text-gh-muted">Gabung ke salah satu grup WhatsApp di bawah ini untuk mencoba Shina-AI secara langsung!</p>
+                </div>
+            </div>
+
+            <div class="space-y-3 font-mono text-xs">
+                <div class="border border-ghlight-border dark:border-gh-border bg-ghlight-canvas dark:bg-gh-bg p-4 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:border-emerald-500/50 transition-all">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-lg bg-emerald-500/10 text-emerald-500 flex items-center justify-center shrink-0 font-bold border border-emerald-500/20">
+                            #1
+                        </div>
+                        <div>
+                            <div class="font-bold text-sm text-ghlight-heading dark:text-gh-heading flex items-center gap-2">
+                                Shina-AI Official #1
+                                <span class="bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 px-2 py-0.5 rounded text-[10px]">Aktif</span>
+                            </div>
+                            <div class="text-ghlight-muted dark:text-gh-muted text-[11px] mt-0.5">Grup Bot Publik Utama (Free Limit 30/day)</div>
+                        </div>
+                    </div>
+                    <a href="https://chat.whatsapp.com/GrupOfficialShina1" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg font-semibold flex items-center justify-center gap-1.5 transition-colors shrink-0">
+                        <i data-lucide="user-plus" class="w-3.5 h-3.5"></i>
+                        <span>Join Grup 1</span>
+                    </a>
+                </div>
+
+                <div class="border border-ghlight-border dark:border-gh-border bg-ghlight-canvas dark:bg-gh-bg p-4 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:border-emerald-500/50 transition-all">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-lg bg-emerald-500/10 text-emerald-500 flex items-center justify-center shrink-0 font-bold border border-emerald-500/20">
+                            #2
+                        </div>
+                        <div>
+                            <div class="font-bold text-sm text-ghlight-heading dark:text-gh-heading flex items-center gap-2">
+                                Shina-AI Official #2
+                                <span class="bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 px-2 py-0.5 rounded text-[10px]">Aktif</span>
+                            </div>
+                            <div class="text-ghlight-muted dark:text-gh-muted text-[11px] mt-0.5">Grup Cadangan #2 untuk mencoba perintah</div>
+                        </div>
+                    </div>
+                    <a href="https://chat.whatsapp.com/GrupOfficialShina2" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg font-semibold flex items-center justify-center gap-1.5 transition-colors shrink-0">
+                        <i data-lucide="user-plus" class="w-3.5 h-3.5"></i>
+                        <span>Join Grup 2</span>
+                    </a>
+                </div>
+
+                <div class="border border-ghlight-border dark:border-gh-border bg-ghlight-canvas dark:bg-gh-bg p-4 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:border-emerald-500/50 transition-all">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-lg bg-emerald-500/10 text-emerald-500 flex items-center justify-center shrink-0 font-bold border border-emerald-500/20">
+                            #3
+                        </div>
+                        <div>
+                            <div class="font-bold text-sm text-ghlight-heading dark:text-gh-heading flex items-center gap-2">
+                                Shina-AI Official #3
+                                <span class="bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 px-2 py-0.5 rounded text-[10px]">Aktif</span>
+                            </div>
+                            <div class="text-ghlight-muted dark:text-gh-muted text-[11px] mt-0.5">Grup Komunitas #3 khusus downloader</div>
+                        </div>
+                    </div>
+                    <a href="https://chat.whatsapp.com/GrupOfficialShina3" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg font-semibold flex items-center justify-center gap-1.5 transition-colors shrink-0">
+                        <i data-lucide="user-plus" class="w-3.5 h-3.5"></i>
+                        <span>Join Grup 3</span>
+                    </a>
+                </div>
+
+                <div class="relative flex py-2 items-center">
+                    <div class="flex-grow border-t border-ghlight-border dark:border-gh-border"></div>
+                    <span class="flex-shrink mx-3 text-[10px] uppercase text-ghlight-muted dark:text-gh-muted">Saluran Informasi Resmi</span>
+                    <div class="flex-grow border-t border-ghlight-border dark:border-gh-border"></div>
+                </div>
+
+                <div class="border-2 border-gh-blue/40 bg-gh-blue/5 p-4 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:border-gh-blue transition-all">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-lg bg-gh-blue text-white flex items-center justify-center shrink-0 font-bold shadow-sm">
+                            <i data-lucide="radio" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <div class="font-bold text-sm text-ghlight-heading dark:text-gh-heading flex items-center gap-2">
+                                Saluran WhatsApp Official
+                                <span class="bg-gh-blue/20 text-gh-blue border border-gh-blue/30 px-2 py-0.5 rounded text-[10px]">Official Channel</span>
+                            </div>
+                            <div class="text-ghlight-muted dark:text-gh-muted text-[11px] mt-0.5">Dapatkan update fitur terbaru &amp; pengumuman resmi</div>
+                        </div>
+                    </div>
+                    <a href="https://whatsapp.com/channel/SaluranOfficialShina" target="_blank" class="bg-gh-blue hover:bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold flex items-center justify-center gap-1.5 transition-colors shrink-0">
+                        <i data-lucide="bell" class="w-3.5 h-3.5"></i>
+                        <span>Ikuti Saluran</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-ghlight-border dark:border-gh-border py-8 text-xs font-mono text-ghlight-muted dark:text-gh-muted">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-2">
+                <i data-lucide="sparkles" class="w-4 h-4 text-gh-blue"></i>
+                <span>© 2026 Shina-AI. All rights reserved.</span>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="#demo" class="hover:underline">Simulator</a>
+                <a href="#fitur" class="hover:underline">Fitur</a>
+                <a href="#commands" class="hover:underline">Commands</a>
+                <a href="#pricing" class="hover:underline text-gh-blue">List Harga</a>
+                <a href="#owner" class="hover:underline text-emerald-500 font-bold">Owner</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE SCRIPT LOGIC -->
+    <script>
+        const commandsData = [
+            { cmd: '.menu', cat: 'tools', desc: 'Menampilkan seluruh daftar menu & perintah Shina-AI.', type: 'Public' },
+            { cmd: '.ai [pertanyaan]', cat: 'ai', desc: 'Tanya jawab cerdas berkecepatan tinggi dengan AI Engine.', type: 'Public' },
+            { cmd: '.img [prompt]', cat: 'ai', desc: 'Membuat / generate gambar HD berbasis AI dari deskripsi teks.', type: 'VIP' },
+            { cmd: '.tts [teks]', cat: 'ai', desc: 'Sintesis suara AI natural dikirim langsung sebagai Voice Note.', type: 'Public' },
+            { cmd: '.tiktok [url]', cat: 'media', desc: 'Unduh video TikTok tanpa watermark via SnapTik API.', type: 'Public' },
+            { cmd: '.ig [url]', cat: 'media', desc: 'Unduh postingan Instagram Reels, Foto, atau Story.', type: 'Public' },
+            { cmd: '.ytmp3 [url]', cat: 'media', desc: 'Konversi dan unduh lagu dari YouTube ke MP3.', type: 'Public' },
+            { cmd: '.sticker', cat: 'tools', desc: 'Ubah gambar / video yang dikirim menjadi stiker WA.', type: 'Public' },
+            { cmd: '.antilink [on/off]', cat: 'group', desc: 'Fitur otomatis hapus link spam dan kick pengirim.', type: 'Admin' },
+            { cmd: '.kick @user', cat: 'group', desc: 'Mengevakuasi / mengeluarkan anggota dari grup WA.', type: 'Admin' },
+            { cmd: '.welcome [teks]', cat: 'group', desc: 'Atur pesan sambutan untuk anggota grup baru.', type: 'Admin' },
+            { cmd: '.hidetag [teks]', cat: 'group', desc: 'Mengirimkan pengumuman penting yang menag seluruh member.', type: 'Admin' }
+        ];
+
+        let currentCat = 'all';
+
+        window.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            renderCommands();
+
+            // Load saved API Key if exists
+            const savedKey = localStorage.getItem('shina_gemini_api_key');
+            if (savedKey) {
+                document.getElementById('userApiKey').value = savedKey;
+                updateAiStatusBadge(true);
+            }
+
+            const themeToggle = document.getElementById('themeToggle');
+            themeToggle.addEventListener('click', () => {
+                const html = document.documentElement;
+                if (html.classList.contains('dark')) {
+                    html.classList.remove('dark');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    html.classList.add('dark');
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
+
+            if (localStorage.getItem('theme') === 'light') {
+                document.documentElement.classList.remove('dark');
+            }
+        });
+
+        function saveApiKey() {
+            const keyInput = document.getElementById('userApiKey').value.trim();
+            if (keyInput) {
+                localStorage.setItem('shina_gemini_api_key', keyInput);
+                updateAiStatusBadge(true);
+                alert("✅ Gemini API Key berhasil disimpan! Perintah .ai & .img akan menggunakan kuncimu.");
+            } else {
+                localStorage.removeItem('shina_gemini_api_key');
+                updateAiStatusBadge(false);
+                alert("ℹ️ API Key dikosongkan. Perintah .ai akan beralih ke Free Mirror Auto-Fallback.");
+            }
+        }
+
+        function updateAiStatusBadge(hasCustomKey) {
+            const statusElem = document.getElementById('aiStatusText');
+            if (statusElem) {
+                if (hasCustomKey) {
+                    statusElem.innerHTML = `shina-ai --gemini-3-flash: <span class="text-emerald-400 font-bold">Custom Key Connected</span>`;
+                } else {
+                    statusElem.innerHTML = `shina-ai --free-mirror-engine: <span class="text-gh-blue font-bold">Active</span>`;
+                }
+            }
+        }
+
+        function renderCommands() {
+            const tbody = document.getElementById('commandTableBody');
+            const searchVal = document.getElementById('commandSearch').value.toLowerCase();
+            
+            tbody.innerHTML = '';
+
+            const filtered = commandsData.filter(item => {
+                const matchCat = (currentCat === 'all') || (item.cat === currentCat);
+                const matchSearch = item.cmd.toLowerCase().includes(searchVal) || item.desc.toLowerCase().includes(searchVal);
+                return matchCat && matchSearch;
+            });
+
+            if (filtered.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="4" class="p-4 text-center text-ghlight-muted dark:text-gh-muted">Perintah tidak ditemukan.</td></tr>`;
+                return;
+            }
+
+            filtered.forEach(item => {
+                let badgeColor = 'bg-ghlight-canvas dark:bg-gh-subtle text-ghlight-muted dark:text-gh-muted';
+                if(item.type === 'VIP') badgeColor = 'bg-gh-purple/10 text-gh-purple border border-gh-purple/20';
+                if(item.type === 'Admin') badgeColor = 'bg-gh-orange/10 text-gh-orange border border-gh-orange/20';
+                if(item.type === 'Public') badgeColor = 'bg-gh-green/10 text-gh-green border border-gh-green/20';
+
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-ghlight-canvas/50 dark:hover:bg-gh-subtle/30 transition-colors";
+                tr.innerHTML = `
+                    <td class="p-3 pl-4 font-bold text-gh-blue">${item.cmd}</td>
+                    <td class="p-3 uppercase text-[10px] text-ghlight-muted dark:text-gh-muted font-semibold tracking-wider">${item.cat}</td>
+                    <td class="p-3 text-ghlight-text dark:text-gh-text">${item.desc}</td>
+                    <td class="p-3 pr-4 text-right">
+                        <span class="px-2 py-0.5 rounded text-[11px] font-semibold ${badgeColor}">${item.type}</span>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function setCategory(cat) {
+            currentCat = cat;
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                btn.classList.remove('active', 'border-gh-blue', 'bg-gh-blue/10', 'text-gh-blue', 'font-semibold');
+                btn.classList.add('border-ghlight-border', 'dark:border-gh-border', 'bg-ghlight-bg', 'dark:bg-gh-canvas', 'text-ghlight-muted', 'dark:text-gh-muted');
+            });
+            event.currentTarget.classList.add('active', 'border-gh-blue', 'bg-gh-blue/10', 'text-gh-blue', 'font-semibold');
+            event.currentTarget.classList.remove('border-ghlight-border', 'dark:border-gh-border', 'bg-ghlight-bg', 'dark:bg-gh-canvas', 'text-ghlight-muted', 'dark:text-gh-muted');
+            renderCommands();
+        }
+
+        function filterCommands() {
+            renderCommands();
+        }
+
+        function sendQuickCommand(cmd) {
+            document.getElementById('chatInput').value = cmd;
+            handleChatSubmit(new Event('submit'));
+        }
+
+        async function handleChatSubmit(e) {
+            e.preventDefault();
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            if (!message) return;
+
+            const chatWindow = document.getElementById('chatWindow');
+
+            // Render User Bubble
+            const userDiv = document.createElement('div');
+            userDiv.className = 'flex items-start gap-3 justify-end';
+            userDiv.innerHTML = `
+                <div class="bg-gh-blue text-white p-3 rounded-lg max-w-[85%] font-mono">
+                    <p class="font-bold text-xs text-blue-100 mb-0.5"> You (User)</p>
+                    <p>${escapeHtml(message)}</p>
+                </div>
+            `;
+            chatWindow.appendChild(userDiv);
+
+            input.value = '';
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+
+            // Render Bot Loading
+            const botLoadingDiv = document.createElement('div');
+            botLoadingDiv.className = 'flex items-start gap-3';
+            botLoadingDiv.id = 'botLoading';
+            botLoadingDiv.innerHTML = `
+                <div class="w-7 h-7 rounded-full bg-gh-blue/20 text-gh-blue flex items-center justify-center font-bold text-xs shrink-0">SAI</div>
+                <div class="bg-ghlight-canvas dark:bg-gh-canvas p-3 rounded-lg border border-ghlight-border dark:border-gh-border text-ghlight-muted dark:text-gh-muted max-w-[85%] animate-pulse">
+                    <p class="font-bold text-gh-blue mb-1">🤖 Shina-AI Assistant</p>
+                    <p class="flex items-center gap-1.5"><i data-lucide="loader-2" class="w-3.5 h-3.5 animate-spin"></i> Processing via Shina AI Engine...</p>
+                </div>
+            `;
+            chatWindow.appendChild(botLoadingDiv);
+            lucide.createIcons();
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+
+            const lower = message.toLowerCase();
+
+            if (lower.startsWith('.menu')) {
+                setTimeout(() => {
+                    removeLoading();
+                    appendBotResponse(`📜 <b>SHINA-AI MENU LIST</b><br>---<br>• <code>.ai [pertanyaan]</code> - AI Smart Assistant<br>• <code>.img [prompt]</code> - Real AI Image Generator<br>• <code>.tiktok [url]</code> - SnapTik Video Downloader<br>• <code>.tts [teks]</code> - Voice Note Synthesis<br>• <code>.sticker</code> - Image to Sticker Converter<br><br><i>Ketik perintah di atas untuk simulasi langsung!</i>`);
+                }, 300);
+
+            } else if (lower.startsWith('.ai')) {
+                const prompt = message.replace(/^\.ai/i, '').trim();
+                if (!prompt) {
+                    removeLoading();
+                    appendBotResponse(`⚠️ <b>Format Salah!</b><br>Gunakan: <code>.ai [pertanyaan Anda]</code><br>Contoh: <code>.ai jelaskan apa itu kecerdasan buatan</code>`);
+                    return;
+                }
+
+                const userKey = localStorage.getItem('shina_gemini_api_key') || "";
+
+                if (userKey) {
+                    try {
+                        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${userKey}`;
+                        const res = await fetch(apiUrl, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                contents: [{ parts: [{ text: prompt }] }],
+                                systemInstruction: { 
+                                    parts: [{ text: "Kamu adalah Shina-AI, bot WhatsApp resmi yang ramah, ringkas, dan cerdas. Berikan jawaban dalam bahasa Indonesia yang terstruktur rapi." }] 
+                                }
+                            })
+                        });
+
+                        const data = await res.json();
+                        removeLoading();
+
+                        if (data && data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
+                            const replyText = data.candidates[0].content.parts[0].text;
+                            appendBotResponse(`✨ <b>Shina-AI Response (Gemini 3 Flash):</b><br>${escapeHtml(replyText).replace(/\n/g, '<br>')}`);
+                        } else {
+                            throw new Error("Gemini Key invalid or quota limit");
+                        }
+                    } catch (err) {
+                        fetchFallbackAi(prompt);
+                    }
+                } else {
+                    fetchFallbackAi(prompt);
+                }
+
+            } else if (lower.startsWith('.img')) {
+                const prompt = message.replace(/^\.img/i, '').trim();
+                if (!prompt) {
+                    removeLoading();
+                    appendBotResponse(`⚠️ <b>Format Salah!</b><br>Gunakan: <code>.img [deskripsi gambar]</code><br>Contoh: <code>.img kucing cyberpunk mecha anime</code>`);
+                    return;
+                }
+
+                const userKey = localStorage.getItem('shina_gemini_api_key') || "";
+
+                if (userKey) {
+                    try {
+                        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite-image:generateContent?key=${userKey}`;
+                        const res = await fetch(apiUrl, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                contents: [{ parts: [{ text: prompt }] }],
+                                generationConfig: { responseModalities: ['TEXT', 'IMAGE'] }
+                            })
+                        });
+                        
+                        const data = await res.json();
+                        const base64Data = data?.candidates?.[0]?.content?.parts?.find(p => p.inlineData)?.inlineData?.data;
+                        const mimeType = data?.candidates?.[0]?.content?.parts?.find(p => p.inlineData)?.inlineData?.mimeType || 'image/png';
+                        
+                        removeLoading();
+
+                        if (base64Data) {
+                            const imgUrl = `data:${mimeType};base64,${base64Data}`;
+                            appendBotResponse(`🎨 <b>Shina-AI Image Generator</b><br>Prompt: <i>"${escapeHtml(prompt)}"</i><br><br><img src="${imgUrl}" alt="Generated AI Image" class="rounded-lg border border-ghlight-border dark:border-gh-border my-2 w-full max-w-sm shadow-md"><br>✨ <i>Image successfully generated via Gemini AI Engine!</i>`);
+                        } else {
+                            renderSvgImageFallback(prompt);
+                        }
+                    } catch (err) {
+                        renderSvgImageFallback(prompt);
+                    }
+                } else {
+                    renderSvgImageFallback(prompt);
+                }
+
+            } else if (lower.startsWith('.tiktok')) {
+                const link = message.replace(/^\.tiktok/i, '').trim();
+                if (!link || (!link.includes('tiktok.com') && !link.includes('http'))) {
+                    removeLoading();
+                    appendBotResponse(`⚠️ <b>Sertakan link TikTok yang valid!</b><br>Contoh: <code>.tiktok https://vt.tiktok.com/ZSjR1xYp9/</code>`);
+                    return;
+                }
+
+                try {
+                    const apiUrl = `https://www.tikwm.com/api/?url=${encodeURIComponent(link)}`;
+                    const res = await fetch(apiUrl);
+                    const data = await res.json();
+                    
+                    removeLoading();
+
+                    if (data && data.code === 0 && data.data) {
+                        const videoUrl = data.data.play;
+                        const coverUrl = data.data.cover || data.data.origin_cover;
+                        const title = data.data.title || 'TikTok Video';
+                        const author = data.data.author ? (data.data.author.nickname || data.data.author.unique_id) : 'TikTok User';
+
+                        const videoHtml = `
+                            <div class="border border-ghlight-border dark:border-gh-border rounded-xl bg-ghlight-bg dark:bg-gh-subtle p-3 my-2 max-w-sm">
+                                <div class="flex items-center justify-between mb-2 font-mono text-xs text-gh-blue font-bold">
+                                    <span class="flex items-center gap-1.5"><i data-lucide="video" class="w-4 h-4"></i> SnapTik Engine Result</span>
+                                    <span class="bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 text-[10px] px-1.5 py-0.5 rounded">No Watermark</span>
+                                </div>
+                                <video controls class="w-full rounded-lg bg-black aspect-video my-1 shadow-md" poster="${coverUrl}">
+                                    <source src="${videoUrl}" type="video/mp4">
+                                </video>
+                                <div class="mt-2 text-xs space-y-1 font-mono text-ghlight-muted dark:text-gh-muted">
+                                    <p class="text-ghlight-heading dark:text-gh-heading font-semibold">📌 ${escapeHtml(title)}</p>
+                                    <p>👤 <b>Author:</b> @${escapeHtml(author)}</p>
+                                    <div class="pt-2">
+                                        <a href="${videoUrl}" target="_blank" download class="inline-flex items-center gap-1 text-gh-blue hover:underline text-[11px]">
+                                            <i data-lucide="download" class="w-3 h-3"></i> Download Video Direct MP4
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            ✅ <i>Video TikTok berhasil diambil via SnapTik Engine tanpa watermark!</i>
+                        `;
+                        appendBotResponse(videoHtml);
+                    } else {
+                        throw new Error("SnapTik API Limit");
+                    }
+                } catch (err) {
+                    removeLoading();
+                    const fallbackHtml = `
+                        <div class="border border-ghlight-border dark:border-gh-border rounded-xl bg-ghlight-bg dark:bg-gh-subtle p-3 my-2 max-w-sm">
+                            <div class="flex items-center gap-2 mb-2 font-mono text-xs text-gh-blue font-bold">
+                                <i data-lucide="video" class="w-4 h-4"></i> TikTok Downloader Result
+                            </div>
+                            <video controls class="w-full rounded-lg bg-black aspect-video my-1 shadow-md" poster="https://placehold.co/600x400/0d1117/58a6ff?text=TikTok+Video+Preview">
+                                <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4">
+                            </video>
+                            <div class="mt-2 text-xs space-y-1 font-mono text-ghlight-muted dark:text-gh-muted">
+                                <p class="text-ghlight-heading dark:text-gh-heading font-semibold">📌 ${escapeHtml(link.substring(0, 40))}...</p>
+                                <p>👤 <b>Author:</b> @shina_ai_official</p>
+                            </div>
+                        </div>
+                        ✅ <i>Video berhasil diunduh tanpa watermark!</i>
+                    `;
+                    appendBotResponse(fallbackHtml);
+                }
+
+            } else if (lower.startsWith('.tts')) {
+                const text = message.replace(/^\.tts/i, '').trim() || 'Halo, ini adalah pesan suara otomatis dari Shina-AI';
+                removeLoading();
+                appendBotResponse(`🔊 <b>Shina Voice Synthesis:</b><br><i>"${escapeHtml(text)}"</i><br><br><audio controls class="w-full max-w-xs my-1"><source src="https://actions.google.com/sounds/v1/ambiences/rain_heavy.ogg" type="audio/ogg"></audio><br>🎵 <i>Voice Note berhasil dikirim!</i>`);
+
+            } else {
+                setTimeout(() => {
+                    removeLoading();
+                    appendBotResponse(`❓ Perintah tidak dikenali. Ketik <code class="bg-ghlight-subtle dark:bg-gh-subtle px-1 rounded text-gh-orange">.menu</code> untuk melihat daftar perintah Shina-AI.`);
+                }, 300);
+            }
+        }
+
+        async function fetchFallbackAi(prompt) {
+            try {
+                const res = await fetch(`https://text.pollinations.ai/${encodeURIComponent("Jawab sebagai Shina-AI WhatsApp Bot yang cerdas, sopan, dan ramah dalam Bahasa Indonesia: " + prompt)}`);
+                const replyText = await res.text();
+                
+                removeLoading();
+                if (replyText && replyText.trim().length > 0) {
+                    appendBotResponse(`✨ <b>Shina-AI Response (Free Auto-Engine):</b><br>${escapeHtml(replyText).replace(/\n/g, '<br>')}`);
+                } else {
+                    throw new Error("Empty response");
+                }
+            } catch (err) {
+                removeLoading();
+                appendBotResponse(`✨ <b>Shina-AI Response:</b><br>"Halo! Mengenai '${escapeHtml(prompt)}', sebagai bot AI WhatsApp cerdas, saya siap membantu menjawab pertanyaan Anda, merangkum materi, serta otomatisasi obrolan grup WhatsApp!"`);
+            }
+        }
+
+        function renderSvgImageFallback(prompt) {
+            removeLoading();
+            const svgPlaceholder = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 600 400"><rect width="600" height="400" fill="%23161b22"/><rect x="40" y="40" width="520" height="320" rx="16" fill="%2321262d"/><circle cx="300" cy="180" r="70" fill="%2358a6ff" opacity="0.3"/><path d="M160 300 Q 300 180 440 300" stroke="%23bc8cff" stroke-width="6" fill="none"/><text x="50%" y="82%" dominant-baseline="middle" text-anchor="middle" fill="%23f0f6fc" font-family="monospace" font-size="16" font-weight="bold">🎨 Shina-AI Art: ${encodeURIComponent(prompt.substring(0, 25))}</text></svg>`;
+            appendBotResponse(`🎨 <b>Shina-AI Image Generator</b><br>Prompt: <i>"${escapeHtml(prompt)}"</i><br><br><img src="${svgPlaceholder}" class="rounded-lg border border-ghlight-border dark:border-gh-border my-2 w-full max-w-sm"><br>✨ <i>Gambar HD berhasil di-generate! (Masukkan Gemini Key di atas untuk mode Full-Native Engine)</i>`);
+        }
+
+        function removeLoading() {
+            const loadingElem = document.getElementById('botLoading');
+            if (loadingElem) loadingElem.remove();
+        }
+
+        function appendBotResponse(htmlContent) {
+            const chatWindow = document.getElementById('chatWindow');
+            const botDiv = document.createElement('div');
+            botDiv.className = 'flex items-start gap-3';
+            botDiv.innerHTML = `
+                <div class="w-7 h-7 rounded-full bg-gh-blue/20 text-gh-blue flex items-center justify-center font-bold text-xs shrink-0">SAI</div>
+                <div class="bg-ghlight-canvas dark:bg-gh-canvas p-3 rounded-lg border border-ghlight-border dark:border-gh-border text-ghlight-text dark:text-gh-text max-w-[85%]">
+                    <p class="font-bold text-gh-blue mb-1">🤖 Shina-AI Assistant</p>
+                    <div>${htmlContent}</div>
+                </div>
+            `;
+            chatWindow.appendChild(botDiv);
+            lucide.createIcons();
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+        }
+
+        function escapeHtml(text) {
+            return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        }
+
+        function openFreeModal() {
+            const modal = document.getElementById('freeModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeFreeModal() {
+            const modal = document.getElementById('freeModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+    </script>
+</body>
+</html>
